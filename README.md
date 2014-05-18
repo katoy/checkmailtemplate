@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/katoy/checkmailtemplate.png?branch=master)](https://travis-ci.org/katoy/checkmailtemplate)
+
 # メールテンプレートファイルの生成とチェックのコマンドラインツール
 
 これは、メールテンプレートを作成したり、チェックをするコマンドラインツールである。  

@@ -1,5 +1,7 @@
 
 [![Build Status](https://travis-ci.org/katoy/checkmailtemplate.png?branch=master)](https://travis-ci.org/katoy/checkmailtemplate)
+[![Dependency Status](https://gemnasium.com/katoy/checkmailtemplate.svg)](https://gemnasium.com/katoy/checkmailtemplate)
+[![Coverage Status](https://coveralls.io/repos/katoy/checkmailtemplate/badge.png)](https://coveralls.io/r/katoy/checkmailtemplate)
 
 # メールテンプレートファイルの生成とチェックのコマンドラインツール
 

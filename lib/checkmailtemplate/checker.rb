@@ -23,7 +23,7 @@ end
 
 def check_folder(path, color)
   ans = true
-  Dir.glob("#{path}/**/*").each do |f|
+  Dir.glob("#{path}/**/*").sort.each do |f|
     if File.ftype(f) == 'file'
       ret = check_file(f, color)
       ans = false unless ret

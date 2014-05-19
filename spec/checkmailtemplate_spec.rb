@@ -125,7 +125,7 @@ describe Checkmailtemplate do
     end
 
     str = <<'EOS'
-E9010: test/templates/sub1/template_001_empty.txt:0  TYPE: が指定されていません。
+E9004: test/templates/sub1/template_001_empty.txt: ファイル内容が binary です。
 E9010: test/templates/sub1/template_002_no_type.txt:1 SUBJ: TYPE: が指定されていません。
 E9011: test/templates/sub1/template_003_no_subj.txt:2 FROM: SUBJ: が指定されていません。
 E9012: test/templates/sub1/template_004_no_from.txt:3 TO: FROM: が指定されていません。

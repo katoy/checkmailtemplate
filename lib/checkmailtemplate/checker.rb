@@ -34,9 +34,10 @@ end
 
 def check_file(path, color)
   fail Errno::ENOENT unless File.exist?(path)
+
   src = File.read(path)
   detection = CharlockHolmes::EncodingDetector.detect(src)
-  # puts "--- #{detection}"
+  # puts "#{detection[:encoding]} #{detection[:type]} #{path}"
   fail(ArgumentError, format(get_message(:BAD_TYPE_1), detection[:type])) if detection[:type] != :text
   fail(ArgumentError, format(get_message(:BAD_ENCODING_1), detection[:encoding])) if detection[:encoding] != 'UTF-8'
   parser = TemplateParser::Parser.new

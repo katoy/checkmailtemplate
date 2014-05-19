@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'thor', '~>0.19.0'
   spec.add_development_dependency 'racc', '~>1.4.11'
   spec.add_development_dependency 'colorize', '~>0.7.2'
-  spec.add_development_dependency 'charlock_holmes', '~>0.7.1'
+  # spec.add_development_dependency 'charlock_holmes', '~>0.7.1'
+  spec.add_development_dependency 'charlock_holmes_bundle_icu', '~>0.6.9.2'
 
 end

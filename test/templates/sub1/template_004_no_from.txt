@@ -1,0 +1,10 @@
+TYPE: type-0
+SUBJ: メールのタイトル
+TO:   to_001@example.com
+TO:   to_002@example.com
+CC:   cc_001@example.com
+CC:   cc_002@example.com
+BCC:  bcc_001@example.com
+BCC:  bcc_002@example.com
+BODY:
+メールの本文

@@ -1,0 +1,5 @@
+TYPE: type-0
+SUBJ: メールのタイトル
+FROM: my@example.com
+BODY:
+メールの本文

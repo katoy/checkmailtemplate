@@ -1,6 +1,8 @@
 language: ruby
 rvm:
+  - 1.9.3
   - 2.1.1
 script:
   - chmod -r test/templates/template_003_cannot_read.txt
+  - chmod -rx test/templates/no-readable
   - bundle exec rake spec

@@ -93,11 +93,13 @@ describe Checkmailtemplate do
   it 'run "check for no-readable"' do
     content = capture(:stderr) do
       begin
+        system('chmod -r test/templates/template_003_cannot_read.txt')
         Checkmailtemplate::Command.new.invoke(:check, ['test/templates/template_003_cannot_read.txt'], color: false)
       rescue SystemExit => ex
         # exit 1 であることをチェック
         expect(ex.status).to eq(1)
       end
+      system('chmod +r test/templates/template_003_cannot_read.txt')
     end
     expect(content).to eq("E9003: test/templates/template_003_cannot_read.txt: アクセスできません。\n")
   end
@@ -117,11 +119,15 @@ describe Checkmailtemplate do
   it 'exit 1 for checking folder include invalid files.' do
     content = capture(:stderr) do
       begin
+        system('chmod -r test/templates/template_003_cannot_read.txt')
+        system('chmod -x test/no-readable')
         Checkmailtemplate::Command.new.invoke(:check, ['test/templates'], color: false)
       rescue SystemExit => ex
         # exit 1 であることをチェック
         expect(ex.status).to eq(1)
       end
+      system('chmod +r test/templates/template_003_cannot_read.txt')
+      system('chmod +x test/no-readable')
     end
 
     str = <<'EOS'

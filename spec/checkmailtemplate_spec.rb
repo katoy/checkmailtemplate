@@ -24,13 +24,13 @@ describe Checkmailtemplate do
 
   it 'run "generate"' do
     content = capture(:stdout) do
-      system('mkdir tmp')
+      FileUtils.mkdir('tmp')
       Checkmailtemplate::Command.new.invoke(:generate, ['tmp/1.txt'], color: false)
     end
     expect(content).to eq('')
     src = File.read('tmp/1.txt')
     expect(src).to eq(sample_template)
-    system('rm -fr tmp')
+    FileUtils.rm_rf('tmp')
   end
 
   it 'run "generate to no-writable"' do
@@ -48,14 +48,14 @@ describe Checkmailtemplate do
   it 'run "generate to no-readable"' do
     content = capture(:stderr) do
       begin
-        system('chmod -x test/no-readable')
+        FileUtils.chmod(666, 'test/no-readable')
         Checkmailtemplate::Command.new.invoke(:generate, ['test/no-readable/tmplate.txt'], color: false)
       rescue SystemExit => ex
         # exit 1 であることをチェック
         expect(ex.status).to eq(1)
       end
     end
-    system('chmod +x test/no-readable')
+    FileUtils.chmod(755, 'test/no-readable')
     expect(content).to eq("E9003: test/no-readable/tmplate.txt: アクセスできません。\n")
   end
 
@@ -93,13 +93,13 @@ describe Checkmailtemplate do
   it 'run "check for no-readable"' do
     content = capture(:stderr) do
       begin
-        system('chmod -r test/templates/template_003_cannot_read.txt')
+        FileUtils.chmod(222, 'test/templates/template_003_cannot_read.txt')
         Checkmailtemplate::Command.new.invoke(:check, ['test/templates/template_003_cannot_read.txt'], color: false)
       rescue SystemExit => ex
         # exit 1 であることをチェック
         expect(ex.status).to eq(1)
       end
-      system('chmod +r test/templates/template_003_cannot_read.txt')
+      FileUtils.chmod(666, 'test/templates/template_003_cannot_read.txt')
     end
     expect(content).to eq("E9003: test/templates/template_003_cannot_read.txt: アクセスできません。\n")
   end
@@ -119,15 +119,15 @@ describe Checkmailtemplate do
   it 'exit 1 for checking folder include invalid files.' do
     content = capture(:stderr) do
       begin
-        system('chmod -r test/templates/template_003_cannot_read.txt')
-        system('chmod -x test/no-readable')
+        FileUtils.chmod(222, 'test/templates/template_003_cannot_read.txt')
+        FileUtils.chmod(666, 'test/no-readable')
         Checkmailtemplate::Command.new.invoke(:check, ['test/templates'], color: false)
       rescue SystemExit => ex
         # exit 1 であることをチェック
         expect(ex.status).to eq(1)
       end
-      system('chmod +r test/templates/template_003_cannot_read.txt')
-      system('chmod +x test/no-readable')
+      FileUtils.chmod(666, 'test/templates/template_003_cannot_read.txt')
+      FileUtils.chmod(755, 'test/no-readable')
     end
 
     str = <<'EOS'
